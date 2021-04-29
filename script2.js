@@ -15,18 +15,19 @@ function setQuery(event){
     }
 }
 
-const successCb = (position) => {
-    console.log(position);
+var x = document.getElementById("demo");
+function getLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition);
+  } else {
+    x.innerHTML = "Geolocation is not supported by this browser.";
+  }
 }
 
-const errorCb = (error) => {
-    console.log(error);
+function showPosition(position) {
+  x.innerHTML = "Latitude: " + position.coords.latitude +
+  "<br>Longitude: " + position.coords.longitude;
 }
-
-btn.addEventListener("click", ()=>{
-	navigator.geolocation.getCurrentPosition(successCb);
-  });
-
 
 function getResults(query){
 fetch(`${api.base}weather?q=${query}&units=imperial&APPID=${api.key}`)
