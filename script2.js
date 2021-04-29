@@ -5,6 +5,7 @@ const api = {
 
 
 const searchbox = document.querySelector(".search-box");
+const btn = document.querySelector("button");
 
 searchbox.addEventListener("keypress", setQuery);
 
@@ -22,9 +23,9 @@ const errorCb = (error) => {
     console.log(error);
 }
 
-window.addEventListener("load", ()=>{
-    navigator.geolocation.getCurrentPosition(successCb, errorCb);
-});
+btn.addEventListener("click", ()=>{
+	navigator.geolocation.getCurrentPosition(successCb);
+  });
 
 
 function getResults(query){
